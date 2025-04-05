@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "*.embeddedhtml": "html",
-        "processos.c": "cpp",
-        "string.h": "c",
-        "processo.c": "cpp"
-    },
-    "C_Cpp.errorSquiggles": "disabled"
-}

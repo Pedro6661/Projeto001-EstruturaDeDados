@@ -3,40 +3,34 @@
 #include <string.h>
 
 Processo *LerDados (const char *nomeArquivo){
-	int i;
-	Processo *Dados = LerDados("C:\\Users\\pedry\\OneDrive\\Desktop\\Projeto001 - EST_DADOS\\processo_043_202409032338.csv");
-	for (i = 0; i<20;i++)
-		printf("%d \t %s \t %s \t %s \t %d \t %d \n",Dados[i].id,Dados[i].numProcesso,Dados[i].data_ajuizamento,Dados[i].id_classe,Dados[i].id_assunto,Dados[i].ano_eleicao);
-}
+    FILE *fp = fopen(nomeArquivo, "r");
+    if(fp == NULL) {
+        printf("ERRO: O arquivo não pode ser aberto!\n");
+        exit(1);
+    }
 
-Processo *LerDados(const char *nomeArquivo){
-	FILE *fp = fopen(nomeArquivo,"r");
-	if(fp == NULL){
-		printf("ERRO: O arquivo nao pode ser aberto\n");
-		exit(1);
-	}
-	
-	Processo *X = malloc(18400*sizeof(Processo));
-	if(X==NULL){
-		printf("ERRO: N�o foi possivel alocar memoria para a tabela\n");
-		exit(1);
-	}
-	
+    Processo *X = malloc(20000 * sizeof(Processo));
+    if(X == NULL) {
+        printf("ERRO: Não foi possível alocar memória para a tabela!\n");
+        exit(1);
+    }
+
 	char Cabecalho[100];
-	fscanf(fp,"%s",Cabecalho);
-	int N=0;
-	
-	while(fscanf(fp,"%d,\"%49[^\"]\",%49[^,] ,{%49[^}]},{%d},%d",&X[N].id,X[N].numProcesso,X[N].data_ajuizamento,X[N].id_classe,&X[N].id_assunto,&X[N].ano_eleicao)==6){
-	N++;
+	fscanf(fp, "%s", Cabecalho);
+	int N = 0;
+	/*(fscanf(fp,formatação do tipo da variavel se for int %d se for char %[^;];%[^;]",atribui a variável vetor de processos*/
+	while(fscanf(fp,"%d,\"%[^\"]\",%[^,],{%[^}]},{%[^}]},%d", &X[N].id, &X[N].numProcesso,&X[N].data_ajuizamento,&X[N].id_classe,&X[N].id_assunto,&X[N].ano_eleicao )== 6/*numero de colunas*/){
+		N++;
 	}
-	
 	fclose(fp);
 	return X;
+}
 
+/*
 //funções
 
 //1. Ordenar, em ordem crescente, o conjunto de dados a partir do atributo “id”;
-ordenarPorId(){
+ordenarPorId(Processo p, int n){
 
 }//crescente
 
@@ -58,6 +52,7 @@ listarProcessosMultiplosAssuntos(){
 
 }
 //6. Indicar a quantos dias um processo está em tramitação na justiça.
-diaseTramitação(){
+diasemTramitacao(){
 
 }
+*/
