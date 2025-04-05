@@ -2,6 +2,7 @@
 #define PROCESSO_H
 
 #include <stdio.h>
+
 typedef struct {
 	int id;
 	char numProcesso[100];
@@ -21,3 +22,5 @@ Processo contadorDeIdAssuntos(Processo *p, int n);
 Processo listarProcessosMultiplosAssuntos(Processo *p, int n);
 Processo diasemTramitacao(Processo *p, int n);
 */
+
+#endif
