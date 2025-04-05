@@ -19,12 +19,16 @@ Processo *LerDados (const char *nomeArquivo){
 	fscanf(fp, "%s", Cabecalho);
 	int N = 0;
 	/*(fscanf(fp,formatação do tipo da variavel se for int %d se for char %[^;];%[^;]",atribui a variável vetor de processos*/
-	while(fscanf(fp,"%d,\"%[^\"]\",%[^,],{%[^}]},{%[^}]},%d", &X[N].id, &X[N].numProcesso,&X[N].data_ajuizamento,&X[N].id_classe,&X[N].id_assunto,&X[N].ano_eleicao )== 6/*numero de colunas*/){
-		N++;
-	}
+	 
+    while(fscanf(fp,"%d,\"%99[^\"]\",%99[^,],{%49[^}]},{%49[^}]},%d",&X[N].id, X[N].numProcesso,
+        X[N].data_ajuizamento,X[N].id_classe,X[N].id_assunto,&X[N].ano_eleicao )== 6 || fscanf(fp,"\"{%49[^}]}\",\"{%49[^}]}\"",X[N].id_classe)== 6){
+        N++;
+        }
+
 	fclose(fp);
 	return X;
-}
+    }
+
 
 /*
 //funções
