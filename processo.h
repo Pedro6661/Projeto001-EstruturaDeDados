@@ -12,7 +12,8 @@ typedef struct {
 	int ano_eleicao;	
 } Processo;
 
-Processo *LerDados(const char *nomeArquivo);
+Processo *LerDados(const char *nomeArquivo, int *n);
+
 /*
 
 Processo ordenarPorId(Processo p, int n);
