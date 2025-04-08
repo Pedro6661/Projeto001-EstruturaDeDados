@@ -13,15 +13,7 @@ typedef struct {
 } Processo;
 
 Processo *LerDados(const char *nomeArquivo, int *n);
-
-/*
-
-Processo ordenarPorId(Processo p, int n);
-Processo ordenarPorData(Processo *p, int n);
-Processo contadorDeIdClasse(Processo *p, int n, const char *id_classe);
-Processo contadorDeIdAssuntos(Processo *p, int n);
-Processo listarProcessosMultiplosAssuntos(Processo *p, int n);
-Processo diasemTramitacao(Processo *p, int n);
-*/
+void ordenarPorId(Processo *vet, int n);
+void salvarCSV(const char *nomeArquivo, Processo *vet, int n);
 
 #endif

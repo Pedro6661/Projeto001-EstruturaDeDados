@@ -3,10 +3,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-//Para compilar, no prompt de comando, deve-se digitar gcc processo.c main.c -o processo.exe. A seguir, paraexecutar, digite ./processo.exe ou ./processo
+//Para compilar: gcc processo.c main.c -o processo.exe
+//Para executar: ./processo.exe
 
 int main(){
-    int n = 0;  // Contador de processos lidos
+    int n = 0;
     Processo *Dados = LerDados("processo_043_202409032338.csv", &n);
 
     for (int i = 0; i < n; i++) {
@@ -19,5 +20,10 @@ int main(){
             Dados[i].ano_eleicao
         );
     }
-		return 0;
+
+    ordenarPorId(Dados, n);
+    salvarCSV("ordenado_por_id.csv", Dados, n);
+
+    free(Dados);
+    return 0;
 }
