@@ -14,8 +14,8 @@ typedef struct {
 
 Processo *LerDados(const char *nomeArquivo, int *n);
 void limparMultivalorado(char *campo);
-void ordenarPorId(Processo *vet, int n);
-void ordenarPorData(Processo *vet, int n);
+void ordenarPorId(Processo processos[], int n);
+void ordenarPorData(Processo processos[], int n);
 void salvarCSV(const char *nomeArquivo, Processo *vet, int n);
 void ContarPorClasse(Processo processos[], int n);
 void ContarPorAssunto(Processo processos[], int n);

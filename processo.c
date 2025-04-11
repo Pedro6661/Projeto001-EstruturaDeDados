@@ -128,34 +128,34 @@ int compararPorId(Processo *a, Processo *b) {
     return a->id - b->id;
 }
 
-void quicksort(Processo *vet, int inf, int sup, int (*comparar)(Processo *, Processo *)) {
+void quicksort(Processo processos[], int inf, int sup, int (*comparar)(Processo *, Processo *)) {
     int i = inf, j = sup;
-    Processo pivo = vet[(inf + sup) / 2];
+    Processo pivo = processos[(inf + sup) / 2];
 
     while (i <= j) {
-        while (comparar(&vet[i], &pivo) < 0) i++;
-        while (comparar(&vet[j], &pivo) > 0) j--;
+        while (comparar(&processos[i], &pivo) < 0) i++;
+        while (comparar(&processos[j], &pivo) > 0) j--;
         if (i <= j) {
-            swap(&vet[i], &vet[j]);
+            swap(&processos[i], &processos[j]);
             i++; j--;
         }
     }
-    if (inf < j) quicksort(vet, inf, j, comparar);
-    if (i < sup) quicksort(vet, i, sup, comparar);
+    if (inf < j) quicksort(processos, inf, j, comparar);
+    if (i < sup) quicksort(processos, i, sup, comparar);
 }
 
-void ordenarPorId(Processo *vet, int n) {
-    quicksort(vet, 0, n - 1, compararPorId);
+void ordenarPorId(Processo processos[], int n) {
+    quicksort(processos, 0, n - 1, compararPorId);
 }
 
 //2. Ordenar, em ordem decrescente, o conjunto de dados a partir do atributo “data_ajuizamento”;
-void ordenarPorData(Processo *vet, int n) {
+void ordenarPorData(Processo processos[], int n) {
     for (int i = 0; i < n - 1; i++) {
         for (int j = i + 1; j < n; j++) {
-            if (strcmp(vet[i].data_ajuizamento, vet[j].data_ajuizamento) < 0) {
-                Processo temp = vet[i];
-                vet[i] = vet[j];
-                vet[j] = temp;
+            if (strcmp(processos[i].data_ajuizamento, processos[j].data_ajuizamento) < 0) {
+                Processo temp = processos[i];
+                processos[i] = processos[j];
+                processos[j] = temp;
             }
         }
     }
